@@ -22,6 +22,12 @@
     "uri",
     "utils"
   ],
+  "files": [
+    "android/",
+    "index.js",
+    "LICENSE",
+    "README.md"
+  ],
   "dependencies": {
     "react-native": ">= 0.33"
   }

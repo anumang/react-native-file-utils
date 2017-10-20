@@ -2,6 +2,7 @@ package com.anumang.rnfileutils;
 
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.database.Cursor;
@@ -10,6 +11,13 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Promise;
+
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.StringTokenizer;
 
 public class RNFileUtilsModule extends ReactContextBaseJavaModule {
   private static final String NAME = "FileUtilsModule";
@@ -22,6 +30,12 @@ public class RNFileUtilsModule extends ReactContextBaseJavaModule {
 
   private  static final String CONTENT_SCHEME = "content";
   private  static final String FILE_SCHEME = "file";
+
+  private static final String RNFUDocumentDirectoryPath = "RNFUDocumentDirectoryPath";
+  private static final String RNFUPicturesDirectoryPath = "RNFUPicturesDirectoryPath";
+  private static final String RNFUDCIMDirectoryPath = "RNFUDCIMDirectoryPath";
+  private static final String RNFUCachesDirectoryPath = "RNFUCachesDirectoryPath";
+  private static final String RNFUDownloadsDirectoryPath = "RNFUDownloadsDirectoryPath";
 
   private static ReactApplicationContext _reactContext;
 
@@ -36,15 +50,45 @@ public class RNFileUtilsModule extends ReactContextBaseJavaModule {
     return NAME;
   }
 
-  private String[] getDocumentUriId(Uri uri) {
-    String idString =  DocumentsContract.getDocumentId(uri);
-    return new String[] {idString.split(":")[1]};
+  @Override
+  public Map<String, Object> getConstants() {
+    return Collections.unmodifiableMap(new HashMap<String, Object>() {
+      {
+        put(RNFUDocumentDirectoryPath, getDocumentDirectory());
+        put(RNFUDownloadsDirectoryPath, getDownloadsDirectory());
+        put(RNFUPicturesDirectoryPath, getPicturesDirectory());
+        put(RNFUDCIMDirectoryPath, getDCIMDirectory());
+        put(RNFUCachesDirectoryPath, getCachesDirectory());
+      }
+
+      private String getDocumentDirectory() {
+        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getPath();
+      }
+
+      private String getDownloadsDirectory() {
+        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getPath();
+      }
+
+      private String getPicturesDirectory() {
+        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath();
+      }
+
+      private String getDCIMDirectory() {
+        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getPath();
+      }
+
+      private String getCachesDirectory() {
+        return _reactContext.getCacheDir().getPath();
+      }
+
+    });
   }
+
 
   /**
    * Get the device path from uri
    *
-   * @param uri string.
+   * @param uriString string.
    * @param promise resul promise
    * @return void
    */
@@ -97,5 +141,10 @@ public class RNFileUtilsModule extends ReactContextBaseJavaModule {
         cursor.close();
     }
     return null;
+  }
+
+  private String[] getDocumentUriId(Uri uri) {
+    String idString =  DocumentsContract.getDocumentId(uri);
+    return new String[] {idString.split(":")[1]};
   }
 }

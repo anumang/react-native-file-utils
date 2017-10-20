@@ -5,6 +5,12 @@ Helper utils for common problems.
 Utils:
 
  * `getPathFromURI` : Convert Uri to real device path for Android
+ * Known paths for Android:
+   * `DocumentDirectoryPath` : Internal document directory 
+   * `PicturesDirectoryPath` : Internal pictures directory 
+   * `DCIMDirectoryPath` : Internal DCIM directory 
+   * `CachesDirectoryPath` : Application cache directory 
+   * `DownloadsDirectoryPath` : Internal downloads directory
 
 ## Installation (Android)
 
@@ -68,6 +74,20 @@ RNFU.getPathFromURI(uriString).then(filePath =>
 
 ```javascript
 RNFU.getPathFromURI(imageUri).then(path =>
+  RNFS.readFile(path, 'base64').then(imageBase64 =>
+    console.log(imageBase64)
+  )
+)
+```
+
+## Use Case - create images on DCIM directory as base64
+
+  * Required: react-native-fs
+    https://github.com/johanneslumpe/react-native-fs
+
+```javascript
+let filePath = RNFU.DCIMDirectoryPath + fileName;
+RNFU.writeFile(filePath, base64Content, 'base64').then(path =>
   RNFS.readFile(path, 'base64').then(imageBase64 =>
     console.log(imageBase64)
   )

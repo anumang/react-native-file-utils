@@ -44,8 +44,8 @@ public class RNFileUtilsModule extends ReactContextBaseJavaModule {
   /**
    * Get the device path from uri
    *
-   * @param String uri string.
-   * @param Promise promise resul promise
+   * @param uri string.
+   * @param promise resul promise
    * @return void
    */
   @ReactMethod

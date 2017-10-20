@@ -1,33 +1,11 @@
 import React, { Component } from 'react';
+import {NativeModules} from 'react-native';
 
 const UtilManager = NativeModules.FileUtilsModule;
 
+export default class RNFU {
 
-export default class RNFU extends Component {
-
-  static constants = {
-  };
-
-  static propTypes = {
-  };
-
-  static defaultProps = {
-  };
-
-  constructor() {
-    super();
-  }
-
-  componentWillMount() {
-  }
-
-  componentWillUnmount() {
-  }
-
-  componentWillReceiveProps() {
-  }
-
-  getPathFromURI(imageUri) {
+  static getPathFromURI(imageUri) {
     return UtilManager ? UtilManager.getPathFromURI(imageUri) : new Promise.resolve(() => imageUri);
   }
 }

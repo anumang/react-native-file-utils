@@ -5,7 +5,7 @@
     "url": "https://github.com/anumang/react-native-file-utils.git"
   },
   "main": "index.js",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A utils component for React Native File operations.",
   "author": "Alper Numan Genc <anumangenc@gmail.com> (https://github.com/anumang)",
   "nativePackage": true,

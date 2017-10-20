@@ -1,4 +1,4 @@
-package com.anumang;
+package com.anumang.rnfileutils;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.JavaScriptModule;

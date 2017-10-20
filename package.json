@@ -1,0 +1,28 @@
+{
+  "name": "react-native-file-utils",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anumang/react-native-file-utils.git"
+  },
+  "main": "index.js",
+  "version": "0.1.0",
+  "description": "A utils component for React Native File operations.",
+  "author": "Alper Numan Genc <anumangenc@gmail.com> (https://github.com/anumang)",
+  "nativePackage": true,
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anumang/react-native-file-utils/issues"
+  },
+  "homepage": "https://github.com/anumang/react-native-file-utils",
+  "keywords": [
+    "react-native",
+    "react",
+    "native",
+    "file",
+    "uri",
+    "utils"
+  ],
+  "dependencies": {
+    "react-native": ">= 0.33"
+  }
+}

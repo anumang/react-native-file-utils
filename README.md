@@ -8,9 +8,10 @@ Utils:
  * Known paths for Android:
    * `DocumentDirectoryPath` : Internal document directory 
    * `PicturesDirectoryPath` : Internal pictures directory 
+   * `DownloadsDirectoryPath` : Internal downloads directory
    * `DCIMDirectoryPath` : Internal DCIM directory 
    * `CachesDirectoryPath` : Application cache directory 
-   * `DownloadsDirectoryPath` : Internal downloads directory
+   * `FilesDirectoryPath` : Application files directory 
 
 ## Installation (Android)
 

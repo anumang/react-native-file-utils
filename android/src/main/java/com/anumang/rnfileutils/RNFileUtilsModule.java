@@ -36,6 +36,7 @@ public class RNFileUtilsModule extends ReactContextBaseJavaModule {
   private static final String RNFUDCIMDirectoryPath = "RNFUDCIMDirectoryPath";
   private static final String RNFUCachesDirectoryPath = "RNFUCachesDirectoryPath";
   private static final String RNFUDownloadsDirectoryPath = "RNFUDownloadsDirectoryPath";
+  private static final String RNFUFilesDirectoryPath = "RNFUFilesDirectoryPath";
 
   private static ReactApplicationContext _reactContext;
 
@@ -59,6 +60,7 @@ public class RNFileUtilsModule extends ReactContextBaseJavaModule {
         put(RNFUPicturesDirectoryPath, getPicturesDirectory());
         put(RNFUDCIMDirectoryPath, getDCIMDirectory());
         put(RNFUCachesDirectoryPath, getCachesDirectory());
+        put(RNFUFilesDirectoryPath, getFilesDirectory());
       }
 
       private String getDocumentDirectory() {
@@ -79,6 +81,10 @@ public class RNFileUtilsModule extends ReactContextBaseJavaModule {
 
       private String getCachesDirectory() {
         return _reactContext.getCacheDir().getPath();
+      }
+
+      private String getFilesDirectory() {
+        return _reactContext.getFilesDir().getPath();
       }
 
     });

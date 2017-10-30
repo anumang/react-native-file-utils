@@ -108,6 +108,7 @@ public class RNFileUtilsModule extends ReactContextBaseJavaModule {
   public void getPathFromURI(String uriString, Promise promise) {
   try{
       Uri uri = Uri.parse(uriString);
+      String result = null;
       final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
       // DocumentProvider
@@ -119,7 +120,7 @@ public class RNFileUtilsModule extends ReactContextBaseJavaModule {
           final String type = split[0];
 
           if (PRIMARY_TYPE.equalsIgnoreCase(type)) {
-            promise.resolve(Environment.getExternalStorageDirectory() + "/" + split[1]);
+            result = Environment.getExternalStorageDirectory() + "/" + split[1];
           }
 
           // TODO handle non-primary volumes
@@ -153,24 +154,30 @@ public class RNFileUtilsModule extends ReactContextBaseJavaModule {
                   split[1]
           };
 
-          promise.resolve(getDataColumn(contentUri, selection, selectionArgs));
+          result = getDataColumn(contentUri, selection, selectionArgs);
         }
       }
       // MediaStore (and general)
       else if (CONTENT_SCHEME.equalsIgnoreCase(uri.getScheme())) {
 
         // Return the remote address
-        if (isGooglePhotosUri(uri))
-          promise.resolve(uri.getLastPathSegment());
+        if (isGooglePhotosUri(uri)) {
+          result = uri.getLastPathSegment();
+        }
+        else {
+          result = getDataColumn( uri, null, null);
+        }
 
-        promise.resolve(getDataColumn( uri, null, null));
       }
       // File
       else if (FILE_SCHEME.equalsIgnoreCase(uri.getScheme())) {
-        promise.resolve(uri.getPath());
+        result = uri.getPath();
       }
-
-      promise.reject(ERROR_UNHANDLED_FILE_TYPE, "File location could not detected.");
+      if(result != null) {
+        promise.resolve(result);
+      } else {
+        promise.reject(ERROR_UNHANDLED_FILE_TYPE, "File location could not detected.");
+      }
   } catch (Exception ex) {
     ex.printStackTrace();
     promise.reject(ERROR_UNEXPECTED_EXCEPTION, ex.getMessage());

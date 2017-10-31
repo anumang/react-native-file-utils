@@ -5,12 +5,12 @@ const UtilManager = NativeModules.FileUtilsModule;
 
 export default class RNFU {
 
-  static DocumentDirectoryPath = UtilManager.RNFUDocumentDirectoryPath;
-  static PicturesDirectoryPath = UtilManager.RNFUPicturesDirectoryPath;
-  static DownloadsDirectoryPath = UtilManager.RNFUDownloadsDirectoryPath;
-  static DCIMDirectoryPath = UtilManager.RNFUDCIMDirectoryPath;
-  static CachesDirectoryPath = UtilManager.RNFUCachesDirectoryPath;
-  static FilesDirectoryPath = UtilManager.RNFUFilesDirectoryPath;
+  static DocumentDirectoryPath = UtilManager ? UtilManager.RNFUDocumentDirectoryPath : null;
+  static PicturesDirectoryPath = UtilManager ? UtilManager.RNFUPicturesDirectoryPath : null;
+  static DownloadsDirectoryPath = UtilManager ? UtilManager.RNFUDownloadsDirectoryPath : null;
+  static DCIMDirectoryPath = UtilManager ? UtilManager.RNFUDCIMDirectoryPath : null;
+  static CachesDirectoryPath = UtilManager ? UtilManager.RNFUCachesDirectoryPath : null;
+  static FilesDirectoryPath = UtilManager ? UtilManager.RNFUFilesDirectoryPath : null;
 
   static getPathFromURI(imageUri) {
     return UtilManager ? UtilManager.getPathFromURI(imageUri) : new Promise.resolve(() => imageUri);

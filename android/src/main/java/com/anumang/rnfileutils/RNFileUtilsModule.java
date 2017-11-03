@@ -37,7 +37,6 @@ public class RNFileUtilsModule extends ReactContextBaseJavaModule {
   private  static final String VIDEO_TYPE = "video";
   private  static final String AUDIO_TYPE = "audio";
 
-  private static final String RNFUDocumentDirectoryPath = "RNFUDocumentDirectoryPath";
   private static final String RNFUPicturesDirectoryPath = "RNFUPicturesDirectoryPath";
   private static final String RNFUDCIMDirectoryPath = "RNFUDCIMDirectoryPath";
   private static final String RNFUCachesDirectoryPath = "RNFUCachesDirectoryPath";
@@ -61,16 +60,11 @@ public class RNFileUtilsModule extends ReactContextBaseJavaModule {
   public Map<String, Object> getConstants() {
     return Collections.unmodifiableMap(new HashMap<String, Object>() {
       {
-        put(RNFUDocumentDirectoryPath, getDocumentDirectory());
         put(RNFUDownloadsDirectoryPath, getDownloadsDirectory());
         put(RNFUPicturesDirectoryPath, getPicturesDirectory());
         put(RNFUDCIMDirectoryPath, getDCIMDirectory());
         put(RNFUCachesDirectoryPath, getCachesDirectory());
         put(RNFUFilesDirectoryPath, getFilesDirectory());
-      }
-
-      private String getDocumentDirectory() {
-        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath();
       }
 
       private String getDownloadsDirectory() {

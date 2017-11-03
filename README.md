@@ -6,7 +6,6 @@ Utils:
 
  * `getPathFromURI` : Convert Uri to real device path for Android
  * Known paths for Android:
-   * `DocumentDirectoryPath` : Internal document directory 
    * `PicturesDirectoryPath` : Internal pictures directory 
    * `DownloadsDirectoryPath` : Internal downloads directory
    * `DCIMDirectoryPath` : Internal DCIM directory 
